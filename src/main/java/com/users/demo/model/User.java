@@ -1,6 +1,8 @@
-package web.model;
+package com.users.demo.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
+
 
 @Entity
 @Table(name = "users")
@@ -26,6 +28,13 @@ public class User {
       this.firstName = firstName;
       this.lastName = lastName;
       this.moselMobail=moselMobail;
+
+   }
+   public User(String firstName, String lastName, String moselMobail, Long id) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.moselMobail=moselMobail;
+      this.id=id;
 
    }
 

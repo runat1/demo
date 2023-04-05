@@ -1,12 +1,15 @@
 
-package web.dao;
+package com.users.demo.dao;
 
+import com.users.demo.model.User;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import web.model.User;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+
+
 import java.beans.Transient;
 import java.util.List;
 
@@ -17,18 +20,23 @@ public class UserDaoImp implements UserDao {
    @PersistenceContext
    private EntityManager entityManager;
    @Override
-   @Transient
+
    public void addUser(User user) {
-      entityManager.persist(user);
+      Long id= user.getId();
+      if (id==null) {
+         entityManager.persist(user);
+      } else {
+         edditUser(id,user);
+      }
    }
    @Override
-   @Transient
+
    public List<User> getListOfUsers() {
       return entityManager.createQuery("select user from User user", User.class).getResultList();
    }
    @Override
-   @Transactional
-   public void removeUser(Long id, User user){
+
+   public void edditUser(Long id, User user){
 
       User userOld= getUserId(id);
       userOld.setFirstName(user.getFirstName());
@@ -37,13 +45,13 @@ public class UserDaoImp implements UserDao {
 
    }
    @Override
-   @Transactional
-   public User getUserId(long id){
+
+   public User getUserId(Long id){
       return entityManager.find(User.class, id);
    }
-   @Transactional
+
    @Override
-   public void deleteUserById(long id) {
-      entityManager.remove(getUserId(id));
+   public void deleteUserById(Long id) {
+      entityManager.createQuery("delete from User where id='"+id+"'").executeUpdate();
    }
 }

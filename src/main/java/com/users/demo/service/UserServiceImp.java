@@ -1,9 +1,10 @@
-package web.service;
+package com.users.demo.service;
 
+import com.users.demo.dao.UserDao;
+import com.users.demo.model.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import web.dao.UserDao;
-import web.model.User;
+
 
 import java.util.List;
 
@@ -30,18 +31,18 @@ public class UserServiceImp implements UserService {
 
    @Override
    @Transactional
-   public void removeUser(long id, User user) {
-      userDao.removeUser(id, user);
+   public void edditUser(Long id, User user) {
+      userDao.edditUser(id, user);
    }
 
    @Override
    @Transactional
-   public User getUserId(long id) {
+   public User getUserId(Long id) {
       return userDao.getUserId(id);
    }
 
    @Override
-   public void deleteUserById(long id) {
+   public void deleteUserById(Long id) {
       userDao.deleteUserById(id);
    }
 

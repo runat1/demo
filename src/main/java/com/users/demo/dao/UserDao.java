@@ -1,8 +1,9 @@
 
-package web.dao;
+package com.users.demo.dao;
 
+import com.users.demo.model.User;
 import org.springframework.transaction.annotation.Transactional;
-import web.model.User;
+
 
 import java.beans.Transient;
 import java.util.List;
@@ -13,13 +14,13 @@ public interface UserDao {
    List<User> getListOfUsers();
 
 
-    @Transactional
-    void removeUser(Long id, User user);
+
+    void edditUser(Long id, User user);
 
 
-    @Transactional
-    User getUserId(long id);
 
-    void deleteUserById(long id);
+    User getUserId(Long id);
+
+    void deleteUserById(Long id);
 
 }

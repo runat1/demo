@@ -6,7 +6,9 @@
   <title>Edit User</title>
 </head>
 <body>
-<form th:method="PATCH" th:action="@{/{id}(id=${user.getId()})}" th:object="${user}">
+<form th:method="POST" th:action="@{/}" th:object="${user}">
+  <input type="hidden" th:field="*{id}" id="${user.getId()}">
+  <br>
   <label for="firstName">Enter firstName:</label>
   <input type="text" th:field="*{firstName}" id="firstName">
   <br/>
@@ -15,7 +17,10 @@
   <br/>    <label for="moselMobail">Enter surname:</label>
   <input type="text" th:field="*{moselMobail}" id="moselMobail">
   <br/>
-  <input type="submit" value="Update">
+  <td><a th:href ="@{/{id} (id = ${user.getId()})}">
+    <input type="submit" value="save">
+  </a></td>
+
 </form>
 </body>
 </html>
